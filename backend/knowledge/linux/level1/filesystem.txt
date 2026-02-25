@@ -1,0 +1,10 @@
+Linux File System Hierarchy
+
+The Linux file system follows a hierarchical structure.
+The root directory is represented by /.
+Common directories:
+- /home : User home directories
+- /etc : Configuration files
+- /var : Variable data like logs
+- /usr : User programs
+- /bin : Essential binaries

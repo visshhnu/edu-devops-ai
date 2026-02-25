@@ -1,0 +1,14 @@
+Linux File Permissions
+
+Each file has:
+- Owner
+- Group
+- Others
+
+Permission types:
+r = read
+w = write
+x = execute
+
+chmod is used to change permissions.
+chown is used to change ownership.

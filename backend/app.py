@@ -29,8 +29,9 @@ collection = client.get_collection("edu_knowledge")
 
 class ChatRequest(BaseModel):
     question: str
-    domain: str | None = None
-    level: str = "beginner"
+    course: str
+    level: str
+    module: str
 
 @app.get("/health")
 def health():
@@ -45,7 +46,11 @@ def chat(request: ChatRequest):
         results = collection.query(
             query_embeddings=[query_embedding],
             n_results=2,
-            where={"domain": request.domain}
+            where={
+	        "course": request.course,
+        	"level": request.level,
+        	"module": request.module
+	     }
         )
     else:
         results = collection.query(

@@ -1,0 +1,32 @@
+{
+  "course_name": "Linux for DevOps Engineers",
+  "levels": [
+    {
+      "level_id": "level0",
+      "title": "IT Foundations",
+      "modules": [
+        {
+          "module_id": "os_basics",
+          "title": "Operating System Basics",
+          "description": "Introduction to operating systems and Linux fundamentals"
+        }
+      ]
+    },
+    {
+      "level_id": "level1",
+      "title": "Core Linux",
+      "modules": [
+        {
+          "module_id": "filesystem",
+          "title": "Linux File System",
+          "description": "Understanding Linux directory structure and file hierarchy"
+        },
+        {
+          "module_id": "permissions",
+          "title": "File Permissions",
+          "description": "Understanding chmod, chown, and permissions"
+        }
+      ]
+    }
+  ]
+}

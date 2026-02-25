@@ -59,12 +59,19 @@ for root, dirs, files in os.walk(knowledge_path):
         for chunk in chunks:
             embedding = embedding_model.encode(chunk).tolist()
 
-            collection.add(
-                documents=[chunk],
-                embeddings=[embedding],
-                metadatas=[metadata],
-                ids=[f"doc_{doc_id}"]
-            )
+           collection.add(
+ 		   documents=chunks,
+    		   embeddings=embeddings,
+    		   metadatas=[
+        		{
+           		     "course": "linux",
+           		     "level": "level1",
+                             "module": "filesystem"
+                        }
+                        for _ in chunks
+                   ],
+                   ids=ids
+		)
 
             doc_id += 1
 
