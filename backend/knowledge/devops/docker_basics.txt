@@ -1,0 +1,10 @@
+DOMAIN: devops
+LEVEL: beginner
+MODULE: docker
+
+Docker is a containerization platform that allows applications
+to run consistently across environments.
+
+A container packages application code along with dependencies.
+Docker images are read-only templates.
+Containers are runtime instances of images.

@@ -1,0 +1,7 @@
+CATEGORY: healthcare
+DOMAIN: medical_coding
+LEVEL: beginner
+MODULE: icd10
+
+ICD-10 codes are alphanumeric codes used to classify diagnoses.
+Medical coding translates healthcare diagnoses and procedures into standardized codes.

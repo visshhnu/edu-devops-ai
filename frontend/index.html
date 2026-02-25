@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DevOpsAI Platform</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f9;
+            margin: 40px;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        select, textarea, button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+        }
+        button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .response {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f1f1f1;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>DevOpsAI Learning Platform</h2>
+
+    <label>Domain:</label>
+    <select id="domain">
+        <option value="">Auto Detect</option>
+        <option value="devops">DevOps</option>
+        <option value="cloud">Cloud</option>
+        <option value="ai">AI</option>
+        <option value="programming">Programming</option>
+        <option value="linux">Linux</option>
+        <option value="medical_coding">Medical Coding</option>
+    </select>
+
+    <label>Level:</label>
+    <select id="level">
+        <option value="beginner">Beginner</option>
+        <option value="advanced">Advanced</option>
+    </select>
+
+    <label>Ask Question:</label>
+    <textarea id="question" rows="4" placeholder="Type your question here..."></textarea>
+
+    <button onclick="askAI()">Ask AI</button>
+
+    <div class="response" id="response"></div>
+</div>
+
+<script>
+async function askAI() {
+    const question = document.getElementById("question").value;
+    const domain = document.getElementById("domain").value;
+    const level = document.getElementById("level").value;
+
+    document.getElementById("response").innerText = "Thinking...";
+
+    const response = await fetch("http://127.0.0.1:8000/chat", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            question: question,
+            domain: domain || null,
+            level: level
+        })
+    });
+
+    const data = await response.json();
+
+    document.getElementById("response").innerText = data.answer;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+Kubernetes is an open-source container orchestration platform.
+A Pod is the smallest deployable unit in Kubernetes.
+Pods contain one or more containers.
+Pods share networking and storage.
