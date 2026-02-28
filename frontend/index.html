@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>DevOpsAI Platform</title>
+    <title>DevOpsAI Learning Platform</title>
     <style>
         body {
             font-family: Arial;
@@ -44,21 +44,20 @@
 <div class="container">
     <h2>DevOpsAI Learning Platform</h2>
 
-    <label>Domain:</label>
-    <select id="domain">
-        <option value="">Auto Detect</option>
-        <option value="devops">DevOps</option>
-        <option value="cloud">Cloud</option>
-        <option value="ai">AI</option>
-        <option value="programming">Programming</option>
+    <label>Course:</label>
+    <select id="course">
         <option value="linux">Linux</option>
-        <option value="medical_coding">Medical Coding</option>
     </select>
 
     <label>Level:</label>
     <select id="level">
-        <option value="beginner">Beginner</option>
-        <option value="advanced">Advanced</option>
+        <option value="level1">Level 1</option>
+    </select>
+
+    <label>Module:</label>
+    <select id="module">
+        <option value="filesystem">File System</option>
+        <option value="permissions">Permissions</option>
     </select>
 
     <label>Ask Question:</label>
@@ -72,26 +71,42 @@
 <script>
 async function askAI() {
     const question = document.getElementById("question").value;
-    const domain = document.getElementById("domain").value;
+    const course = document.getElementById("course").value;
     const level = document.getElementById("level").value;
+    const module = document.getElementById("module").value;
+
+    if (!question.trim()) {
+        document.getElementById("response").innerText = "Please enter a question.";
+        return;
+    }
 
     document.getElementById("response").innerText = "Thinking...";
 
-    const response = await fetch("http://127.0.0.1:8000/chat", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            question: question,
-            domain: domain || null,
-            level: level
-        })
-    });
+    try {
+        const response = await fetch("http://127.0.0.1:8000/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                question: question,
+                course: course,
+                level: level,
+                module: module
+            })
+        });
 
-    const data = await response.json();
+        console.log("Status:", response.status);
 
-    document.getElementById("response").innerText = data.answer;
+    const text = await response.text();
+    console.log("Raw response:", text);
+
+    document.getElementById("response").innerText = text;
+
+  } catch (error) {
+    console.error("Fetch error:", error);
+    document.getElementById("response").innerText = "Error connecting to backend.";
+  }
 }
 </script>
 
